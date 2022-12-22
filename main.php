@@ -1,10 +1,34 @@
 <?php include("view/top.php"); ?>
 
 <br><br>
-<div class="container">  
+<div class="container">
+
   <div class="row"> <!-- Tất cả mặt hàng - Xử lý phân trang -->
      <a name="sptatca"></a>
      <h3>Tất cả sản phẩm </h3>
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Large button groups (default and split) -->
+<div class="btn-group">
+  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Large button
+  </button>
+  <ul class="dropdown-menu">
+    ...
+  </ul>
+</div>
+<div class="btn-group">
+  <button class="btn btn-secondary btn-lg" type="button">
+    Large split button
+  </button>
+  <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    ...
+  </ul>
+</div>
+     </nav>
+<br>
     <?php
     foreach($mathang as $mh):
     ?>
