@@ -5,42 +5,20 @@
 
   <div class="row"> <!-- Tất cả mặt hàng - Xử lý phân trang -->
      <a name="sptatca"></a>
-     <h3>Tất cả sản phẩm </h3>
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <!-- Large button groups (default and split) -->
-<div class="btn-group">
-  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Large button
-  </button>
-  <ul class="dropdown-menu">
-    ...
-  </ul>
-</div>
-<div class="btn-group">
-  <button class="btn btn-secondary btn-lg" type="button">
-    Large split button
-  </button>
-  <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="visually-hidden">Toggle Dropdown</span>
-  </button>
-  <ul class="dropdown-menu">
-    ...
-  </ul>
-</div>
-     </nav>
 <br>
     <?php
     foreach($mathang as $mh):
     ?>
     <div class="col-sm-3">
-      <div class="panel panel-primary text-center">
+      
+        <div class="panel-body">
+			<a href="?action=xemchitiet&mahang=<?php echo $mh["id"]; ?>"><img src="<?php echo $mh["hinhanh"]; ?>" class="img-responsive" style="width:100%" alt="<?php echo $mh["tenmathang"]; ?>"></a>
+			<div class="panel panel-primary text-center">
         <div class="panel-heading">
            
           <a href="?action=xemchitiet&mahang=<?php echo $mh["id"]; ?>" style="color:white;font-weight:bold;" ><?php echo $mh["tenmathang"]; ?></a>
         </div>
-        <div class="panel-body">
-			<a href="?action=xemchitiet&mahang=<?php echo $mh["id"]; ?>"><img src="<?php echo $mh["hinhanh"]; ?>" class="img-responsive" style="width:100%" alt="<?php echo $mh["tenmathang"]; ?>"></a>
-			<strong>Giá bán: <span  class="text-danger">
+      <strong>Giá bán: <span  class="text-danger">
             <?php echo number_format($mh["giaban"]); ?>đ</span> </strong>
 		</div>
         <div class="panel-footer">          
@@ -73,5 +51,4 @@
 
 </div>
 
-<?php include("view/carousel.php"); ?>
 <?php include("view/bottom.php"); ?>

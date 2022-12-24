@@ -12,30 +12,26 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="images/carousel/c1.png" alt="ABC Shop">
+        <img src="images/carousel/c1.jpg" alt="ABC Shop">
         <div class="carousel-caption">
-          <h3>Sản phẩm chất lượng</h3>
         </div>      
       </div>
 
       <div class="item">
-        <img src="images/carousel/c2.png" alt="ABC Shop">
+        <img src="images/carousel/c2.jpeg" alt="ABC Shop">
         <div class="carousel-caption">
-          <h3>Mẫu mã đa dạng</h3>
         </div>      
       </div>
 
       <div class="item">
-        <img src="images/carousel/c3.png" alt="ABC Shop">
+        <img src="images/carousel/c3.jpg" alt="ABC Shop">
         <div class="carousel-caption">
-          <h3>Giá cả hợp lý</h3>
         </div>      
       </div>
 
       <div class="item">
-        <img src="images/carousel/c4.png" alt="ABC Shop">
+        <img src="images/carousel/c4.jpg" alt="ABC Shop">
         <div class="carousel-caption">
-          <h3>Tận tâm phục vụ</h3>
         </div>      
       </div>
     
