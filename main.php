@@ -1,54 +1,83 @@
-<?php include("view/top.php"); ?>
 
-<br><br>
-<div class="container">
 
-  <div class="row"> <!-- Tất cả mặt hàng - Xử lý phân trang -->
-     <a name="sptatca"></a>
-<br>
-    <?php
-    foreach($mathang as $mh):
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="public/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="public/js/main.js"></script>
+    <title>homepage</title>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm bg-info navbar-light">
+		  <div class="container">
+			<ul class="navbar-nav">			  
+			 <li class="nav-item">
+				<a class="nav-link" href="#">Bản tin</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">Bình luận</a>
+			  </li>			  
+			</ul>
+		  </div>
+		</nav>
+    </header>
+	
+    <div class="container">
+	<br>        
+		<div class="row">			
+			<div class="col-md-9">
+				<?php
+    foreach($baiviet as $bv):
     ?>
-    <div class="col-sm-3">
-      
-        <div class="panel-body">
-			<a href="?action=xemchitiet&mahang=<?php echo $mh["id"]; ?>"><img src="<?php echo $mh["hinhanh"]; ?>" class="img-responsive" style="width:100%" alt="<?php echo $mh["tenmathang"]; ?>"></a>
-			<div class="panel panel-primary text-center">
-        <div class="panel-heading">
-           
-          <a href="?action=xemchitiet&mahang=<?php echo $mh["id"]; ?>" style="color:white;font-weight:bold;" ><?php echo $mh["tenmathang"]; ?></a>
-        </div>
-      <strong>Giá bán: <span  class="text-danger">
-            <?php echo number_format($mh["giaban"]); ?>đ</span> </strong>
-		</div>
-        <div class="panel-footer">          
-			<a class="btn btn-info" href="?action=xemchitiet&mahang=<?php echo $mh["id"]; ?>">
-    	Chi tiết</a> 
-			<a class="btn btn-danger" href="index.php?action=chovaogio&id=<?php echo $mh["id"]; ?>&soluong=1">Chọn mua</a>  
 
-        </div>
-      </div>
-    </div>    
-    <?php endforeach; ?>
+	
+
+	<div class="card" style="width: 80%;">
+  
+  <h5><img src="images/<?php echo $bv["hinhanh"]; ?>" class="card-img-top" alt="..."><?php echo $bv["ten"]; ?>
+    <h6 class="card-text">Ngày đăng: <?php echo $bv["ngaydang"]; ?></h6>
+</h5>
+  <div class="card-body">
+    <h5 class="card-title">Tin <?php echo $bv["tieude"]; ?></h5>
+    <p class="card-text"><?php echo $bv["noidung"]; ?></p>
+    <a href="?action=likebaiviet&id=<?php echo $bv["id"];?>"><i class="fa fa-heart"></i><?php echo $bv["luotlike"]; ?></a>
+	<a href="?action=binhluanbaiviet&id=<?php echo $bv["id"];?>"><i class="fa fa-comment"></i> <?php echo $bv["luotbinhluan"]; ?></a>
+	<button id="show"><i class="fa fa-share"></i><?php echo $bv["luotchiase"]; ?></button>
+	<div>
+      <dialog id="DialogChiase">
+        <p>
+          Chia sẻ bài viết này
+        </p>
+        <a class="btn btn-primary" href="?action=chiasebaiviet&id=<?php echo $bv["id"];?>">Chia sẻ ngay</a>
+      </dialog>
+    </div>
   </div>
-<div class="row">
-	<ul class="pagination">
-		<li><a href="index.php?trang=1"><span class="glyphicon glyphicon-step-backward"></span></a></li>
-	<?php
-	for($i=1; $i<=$tongsotrang; $i++){
-	?>	
-		<li <?php if($tranghh == $i) echo " class=\"active\"" ?>>
-		<a href="index.php?trang=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-	<?php	
-	}
-	?>
-		<li><a href="index.php?trang=<?php echo $tongsotrang; ?>"><span class="glyphicon glyphicon-step-forward"></span></a></li>
-	</ul>
-</div>
   
-  <?php include("topview.php"); ?>
-  
-
 </div>
 
-<?php include("view/bottom.php"); ?>
+    <?php endforeach; ?>
+			</div>
+			<div class="col-md-3 bg-primary p-3">
+				<p>Thông tin người dùng
+			</div>
+					
+		</div>
+		<br>
+    </div>
+	<script type="text/JavaScript">
+      (function() { var dialog = document.getElementById('DialogChiase');
+		 document.getElementById('show').onclick = function() { dialog.show();
+		 };
+		  document.getElementById('hide').onclick = function() { dialog.close();
+		 };
+		 })();
+    </script>
+</body>
+</html>

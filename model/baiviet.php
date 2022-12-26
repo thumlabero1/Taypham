@@ -1,12 +1,12 @@
 <?php
-class MATHANG{
+class BAIVIET{
     // khai báo các thuộc tính - SV tự bổ sung
     
     // Đếm tổng số mặt hàng
-    public function demtongsomathang(){
+    public function dembaiviet(){
         $dbcon = DATABASE::connect();
         try{
-            $sql = "SELECT COUNT(*) FROM mathang";
+            $sql = "SELECT COUNT(*) FROM baiviet";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchColumn();
@@ -53,10 +53,10 @@ class MATHANG{
 
 
     // Lấy danh sách
-    public function laymathang(){
+    public function laybaiviet(){
         $dbcon = DATABASE::connect();
         try{
-            $sql = "SELECT * FROM mathang";
+            $sql = "SELECT * FROM baiviet";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -70,12 +70,12 @@ class MATHANG{
         }
     }
 	    // Lấy danh sách mặt hàng thuộc 1 danh mục
-    public function laymathangtheodanhmuc($danhmuc_id){
+    public function laybaiviettheoid($id){
         $dbcon = DATABASE::connect();
         try{
-            $sql = "SELECT * FROM mathang WHERE danhmuc_id=:madm" ;
+            $sql = "SELECT * FROM baiviet WHERE id=:id" ;
             $cmd = $dbcon->prepare($sql);
-			$cmd->bindValue(":madm",$danhmuc_id);
+			$cmd->bindValue(":id",$id);
             $cmd->execute();
             $result = $cmd->fetchAll();
             return $result;
@@ -88,12 +88,12 @@ class MATHANG{
     }
 
     // Lấy mặt hàng theo id
-    public function laymathangtheoid($id){
+    public function laybaiviettheoemail($email){
         $dbcon = DATABASE::connect();
         try{
-            $sql = "SELECT * FROM mathang WHERE id=:id";
+            $sql = "SELECT * FROM baiviet WHERE email=:email";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $id);
+            $cmd->bindValue(":email", $email);
             $cmd->execute();
             $result = $cmd->fetch();             
             return $result;
@@ -139,19 +139,18 @@ class MATHANG{
         }
     }
 	// Thêm mới
-    public function themmathang($tenmathang,$mota,$giagoc,$giaban,$soluongton,$danhmuc_id,$hinhanh){
+    public function thembaiviet($tieude,$ngaydang,$noidung,$hinhanh,$email){
         $dbcon = DATABASE::connect();
         try{
-            $sql = "INSERT INTO mathang(tenmathang,mota,giagoc,giaban,soluongton,danhmuc_id,hinhanh,luotxem,luotmua) 
-				VALUES(:tenmathang,:mota,:giagoc,:giaban,:soluongton,:danhmuc_id,:hinhanh,0,0)";
+            $sql = "INSERT INTO mathang(tieude,ngaydang,noidung,hinhanh,email) 
+				VALUES(:tieude,:ngaydang,:noidung,:hinhanh,:email)";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":tenmathang", $tenmathang);
-			$cmd->bindValue(":mota", $mota);
-			$cmd->bindValue(":giagoc", $giagoc);
+            $cmd->bindValue(":tieude", $tenmatieudethang);
+			$cmd->bindValue(":ngaydang", $ngaydang);
+			$cmd->bindValue(":noidung", $noidung);
 			$cmd->bindValue(":giaban", $giaban);
-			$cmd->bindValue(":soluongton", $soluongton);
-			$cmd->bindValue(":danhmuc_id", $danhmuc_id);
 			$cmd->bindValue(":hinhanh", $hinhanh);
+			$cmd->bindValue(":email", $email);
             $result = $cmd->execute();            
             return $result;
         }
@@ -163,10 +162,10 @@ class MATHANG{
     }
 
     // Xóa 
-    public function xoamathang($id){
+    public function xoabaiviet($id){
         $dbcon = DATABASE::connect();
         try{
-            $sql = "DELETE FROM mathang WHERE id=:id";
+            $sql = "DELETE FROM baiviet WHERE id=:id";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":id", $id);
             $result = $cmd->execute();            
@@ -180,29 +179,21 @@ class MATHANG{
     }
 
     // Cập nhật 
-    public function suamathang($id, $tenmathang,$mota,$giagoc,$giaban,$soluongton,$danhmuc_id,$hinhanh,$luotxem,$luotmua){
+    public function suabaiviet($id, $tieude,$ngaydang,$noidung,$hinhanh,$email){
         $dbcon = DATABASE::connect();
         try{
-            $sql = "UPDATE mathang SET tenmathang=:tenmathang,
-										mota=:mota,
-										giagoc=:giagoc,
-										giaban=:giaban,
-										soluongton=:soluongton,
-										danhmuc_id=:danhmuc_id,
+            $sql = "UPDATE baiviet SET tieude=:tieude,
+										ngaydang=:ngaydang,
+										noidung=:noidung,
 										hinhanh=:hinhanh,
-										luotxem=:luotxem,
-										luotmua=:luotmua
+										email=:email,
 										WHERE id=:id";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":tenmathang", $tenmathang);
-			$cmd->bindValue(":mota", $mota);
-			$cmd->bindValue(":giagoc", $giagoc);
-			$cmd->bindValue(":giaban", $giaban);
-			$cmd->bindValue(":soluongton", $soluongton);
-			$cmd->bindValue(":danhmuc_id", $danhmuc_id);
+            $cmd->bindValue(":tieude", $tieude);
+			$cmd->bindValue(":ngaydang", $ngaydang);
+			$cmd->bindValue(":noidung", $noidung);
 			$cmd->bindValue(":hinhanh", $hinhanh);
-			$cmd->bindValue(":luotxem", $luotxem);
-			$cmd->bindValue(":luotmua", $luotmua);
+			$cmd->bindValue(":email", $email);
             $cmd->bindValue(":id", $id);
             $result = $cmd->execute();            
             return $result;
@@ -213,6 +204,52 @@ class MATHANG{
             exit();
         }
     }
+    public function tangluotlike($id){
+        $dbcon = DATABASE::connect();
+        try{
+            $sql = "UPDATE baiviet SET luotlike=luotlike+1 WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
+            $result = $cmd->execute();            
+            return $result;
+        }
+        catch(PDOException $e){
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function tangluotbinhluan($id){
+        $dbcon = DATABASE::connect();
+        try{
+            $sql = "UPDATE baiviet SET luotbinhluan=luotbinhluan+1 WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
+            $result = $cmd->execute();            
+            return $result;
+        }
+        catch(PDOException $e){
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function tangluotchiase($id){
+        $dbcon = DATABASE::connect();
+        try{
+            $sql = "UPDATE baiviet SET luotchiase=luotchiase+1 WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $id);
+            $result = $cmd->execute();            
+            return $result;
+        }
+        catch(PDOException $e){
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
 
 }
 ?>

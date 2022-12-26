@@ -1,6 +1,6 @@
 <?php
 class DATABASE{
-    private static $dns = "mysql:host=localhost;dbname=socialdata;port=3306";
+    private static $dns = "mysql:host=localhost;dbname=mangxahoi;port=3306";
     private static $username = "root";
     private static $password = "";
     private static $options = array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, 

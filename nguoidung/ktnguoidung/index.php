@@ -1,7 +1,11 @@
 <?php 
 require("../../model/database.php");
 require("../../model/nguoidung.php");
-
+require("../../model/baiviet.php");
+require("../../model/binhluan.php");
+$bv = new BAIVIET();
+$bl = new BINHLUAN();
+$baiviet = $bv->laybaiviet();
 // Biến cho biết ng dùng đăng nhập chưa
 $isLogin = isset($_SESSION["nguoidung"]);
 
@@ -63,7 +67,25 @@ switch($action){
          if (isset($_POST["txtemail"]) && isset($_POST["txtmatkhaumoi"]) )
             $nguoidung->doimatkhau($_POST["txtemail"],$_POST["txtmatkhaumoi"]);
         include("main.php");
-        break;    
+        break;
+        case "likebaiviet":  
+            $id = $_GET["id"];
+                // tăng lượt like lên 1
+                $bv->tangluotlike($id);
+                include("main.php");
+            break;
+    case "binhluanbaiviet":  
+            $id = $_GET["id"];
+                // tăng lượt like lên 1
+                $bv->tangluotbinhluan($id);
+                include("main.php");
+            break;
+    case "chiasebaiviet":  
+            $id = $_GET["id"];
+                // tăng lượt like lên 1
+                $bv->tangluotchiase($id);
+                include("main.php");
+            break;
     default:
         break;
 }

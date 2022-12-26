@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ABC Shop - Trang quản trị</title>
+  <title>Trang quản trị</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -58,9 +58,7 @@
         <li><a href=""><span class="glyphicon glyphicon-list-alt"></span> Quản lý... (bổ sung)</a></li>
         <?php
         if(isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["loai"]==1){
-
         ?>
-        <li><a href="../qldonhang/index.php"><span class="glyphicon glyphicon-gift"></span> Manager User Order</a></li>
         <li class="active"><a href="#"><span class="glyphicon glyphicon-cog"></span> Quản trị</a></li>
         <li><a href="../qlnguoidung"><span class="glyphicon glyphicon-list-alt"></span> Quản lý người dùng</a></li>
       <?php } ?>

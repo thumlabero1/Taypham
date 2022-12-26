@@ -5,21 +5,9 @@ if (!isset($_SESSION['giohang']) ) {
 }
 
 // Hàm thêm sản phẩm vào giỏ
-function themhangvaogio($mahang, $soluong) {
-    
+function themhangvaogio($mahang, $soluong) {    
     //Cập nhập Số lượng vào SESSION - Làm tròn
-    $_SESSION['giohang'][$mahang] = round($soluong, 0);
-}
-
-// Kiểm tra 1 mặt hàng đã có trong giỏ
-function kiemtramathang($mahang){
-    return isset($_SESSION['giohang'][$mahang]);
-}
-
-// Tăng số lượng của 1 mặt hàng trong giỏ
-function tangsoluong($mahang, $soluongtang) {
-    $_SESSION['giohang'][$mahang] = $_SESSION['giohang'][$mahang] + round($soluongtang, 0);
-    
+    $_SESSION['giohang'][$mahang] = round($soluong, 0);    
 }
 
 // Cập nhật số lượng của giỏ hàng
@@ -53,8 +41,7 @@ function laygiohang() {
         $sotien = round($dongia * $soluong, 2);
 
         // Lưu thông tin trong mảng items để hiển thị lên giỏ hàng
-        $mh[$mahang]['tenmathang'] = $m['tenmathang'];
-		$mh[$mahang]['hinhanh'] = $m['hinhanh'];
+        $mh[$mahang]['tenhang'] = $m['tenmathang'];
         $mh[$mahang]['giaban'] = $dongia;
         $mh[$mahang]['soluong'] = $solg;
         $mh[$mahang]['sotien'] = $sotien;

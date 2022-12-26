@@ -24,8 +24,9 @@ class DANHMUC{
         $dbcon = DATABASE::connect();
         try{
             $sql = "SELECT * FROM danhmuc";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->execute();
+             $cmd = $dbcon->prepare($sql);
+             $cmd->execute();
+            
             $result = $cmd->fetchAll();
             return $result;
         }
